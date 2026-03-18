@@ -1,0 +1,231 @@
+<Window x:Class="BetterPasswordVault.VaultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BetterPasswordVault - Vault" Height="720" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource AppBackground}"
+        FontFamily="Segoe UI">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource PanelBackground}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Width" Value="320"/>
+        </Style>
+        <Style x:Key="ActionBtn" TargetType="Button">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" LastChildFill="False" Margin="0,0,0,16">
+            <TextBlock x:Name="WelcomeText" FontSize="22" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimary}"
+                       DockPanel.Dock="Left" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                <Button Width="40" Height="36"
+                        Background="{DynamicResource ButtonAlt}"
+                        Foreground="{DynamicResource TextPrimary}"
+                        BorderBrush="{DynamicResource ButtonAltBorder}" BorderThickness="1"
+                        Margin="0,0,10,0" Click="Settings_Click">
+                    <TextBlock Text="&#x2699;" FontFamily="Segoe UI Symbol" FontSize="18"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Button Content="{DynamicResource BtnSave}" Width="100" Height="36"
+                        Background="#3A7BFF" Foreground="White"
+                        BorderThickness="0" FontSize="14" FontWeight="SemiBold"
+                        Click="Save_Click"/>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Barra di ricerca -->
+        <Border Grid.Row="1" Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource BorderColor}"
+                BorderThickness="1" CornerRadius="8" Padding="10,8"
+                Margin="0,0,0,10" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="&#x1F50D;" FontSize="16"
+                           VerticalAlignment="Center" Margin="0,0,8,0"
+                           Foreground="{DynamicResource TextSecondary}"/>
+                <TextBox x:Name="SearchBox" Grid.Column="1"
+                         Background="Transparent" BorderThickness="0"
+                         Foreground="{DynamicResource TextPrimary}"
+                         CaretBrush="{DynamicResource TextPrimary}"
+                         FontSize="14" VerticalAlignment="Center"
+                         TextChanged="SearchBox_TextChanged"/>
+                <Button x:Name="ClearSearchBtn" Grid.Column="2"
+                        Content="✕" Width="28" Height="28"
+                        Background="Transparent" Foreground="{DynamicResource TextSecondary}"
+                        BorderThickness="0" FontSize="13"
+                        Visibility="Collapsed"
+                        Click="ClearSearch_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- Griglia card -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,54,0,0">
+            <ItemsControl x:Name="VaultCards">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardStyle}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Background="{DynamicResource ButtonAlt}"
+                                        CornerRadius="10,10,0,0" Padding="12,10">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Image Source="{Binding FaviconUrl}" Width="22" Height="22"
+                                               Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding DisplaySite}" FontSize="15" FontWeight="SemiBold"
+                                                   Foreground="{DynamicResource TextPrimary}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+                                <StackPanel Grid.Row="1" Margin="12,10,12,10">
+                                    <TextBlock Text="{DynamicResource LabelUsernameField}"
+                                               Foreground="{DynamicResource TextSecondary}" FontSize="11" Margin="0,0,0,2"/>
+                                    <TextBlock Text="{Binding Username}" Foreground="{DynamicResource TextPrimary}"
+                                               FontSize="14" TextTrimming="CharacterEllipsis"/>
+                                    <TextBlock Text="{DynamicResource LabelNoteField}"
+                                               Foreground="{DynamicResource TextSecondary}" FontSize="11" Margin="0,8,0,2"
+                                               Visibility="{Binding HasNote, Converter={StaticResource BoolToVis}}"/>
+                                    <TextBlock Text="{Binding Note}" Foreground="{DynamicResource TextSecondary}"
+                                               FontSize="12" TextTrimming="CharacterEllipsis"
+                                               Visibility="{Binding HasNote, Converter={StaticResource BoolToVis}}"/>
+                                </StackPanel>
+                                <Grid Grid.Row="2" Margin="12,0,12,12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Content="{DynamicResource BtnCopyPassword}"
+                                            Style="{StaticResource ActionBtn}"
+                                            Background="#3A7BFF" Margin="0,0,8,0"
+                                            Tag="{Binding}" Click="Copy_Click"/>
+                                    <Button Grid.Column="1" Content="&#x270F;"
+                                            Style="{StaticResource ActionBtn}"
+                                            Background="#D97706" Width="36" Margin="0,0,8,0"
+                                            Tag="{Binding}" Click="Edit_Click"/>
+                                    <Button Grid.Column="2" Content="&#x1F5D1;"
+                                            Style="{StaticResource ActionBtn}"
+                                            Background="#7F1D1D" Width="36"
+                                            Tag="{Binding}" Click="Delete_Click"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!-- Form aggiunta -->
+        <Border Grid.Row="2" Background="{DynamicResource PanelBackground}"
+                BorderBrush="{DynamicResource BorderColor}"
+                BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,14,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{DynamicResource LabelSite}"
+                               Foreground="{DynamicResource TextSecondary}" FontSize="13"/>
+                    <TextBlock Grid.Column="1" Text="{DynamicResource LabelUsernameField}"
+                               Foreground="{DynamicResource TextSecondary}" FontSize="13"/>
+                    <TextBlock Grid.Column="2" Text="{DynamicResource LabelPasswordField}"
+                               Foreground="{DynamicResource TextSecondary}" FontSize="13"/>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SiteBox" Grid.Column="0" Height="36" Margin="0,0,12,0"
+                             Background="{DynamicResource InputBackground}"
+                             Foreground="{DynamicResource TextPrimary}"
+                             BorderBrush="{DynamicResource InputBorder}"
+                             Padding="10,6" FontSize="14"
+                             CaretBrush="{DynamicResource TextPrimary}"/>
+                    <TextBox x:Name="UserBox" Grid.Column="1" Height="36" Margin="0,0,12,0"
+                             Background="{DynamicResource InputBackground}"
+                             Foreground="{DynamicResource TextPrimary}"
+                             BorderBrush="{DynamicResource InputBorder}"
+                             Padding="10,6" FontSize="14"
+                             CaretBrush="{DynamicResource TextPrimary}"/>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,12,0">
+                        <PasswordBox x:Name="PassBox" Height="36" Width="150"
+                                     Background="{DynamicResource InputBackground}"
+                                     Foreground="{DynamicResource TextPrimary}"
+                                     BorderBrush="{DynamicResource InputBorder}"
+                                     Padding="10,6" FontSize="14"/>
+                        <TextBox x:Name="PassBoxVisible" Height="36" Width="150"
+                                 Background="{DynamicResource InputBackground}"
+                                 Foreground="{DynamicResource TextPrimary}"
+                                 BorderBrush="{DynamicResource InputBorder}"
+                                 Padding="10,6" FontSize="14"
+                                 Visibility="Collapsed"
+                                 CaretBrush="{DynamicResource TextPrimary}"/>
+                        <Button x:Name="TogglePassBtn" Content="&#x1F441;" Width="36" Height="36"
+                                Margin="6,0,0,0"
+                                Background="{DynamicResource ButtonAlt}"
+                                Foreground="{DynamicResource TextPrimary}"
+                                BorderThickness="0" FontSize="15"
+                                Click="TogglePassword_Click"/>
+                        <Button Content="{DynamicResource BtnGenerate}" Width="80" Height="36"
+                                Margin="8,0,0,0" Background="#7C3AED" Foreground="White"
+                                BorderThickness="0" FontSize="13"
+                                Click="Generate_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3" Orientation="Vertical" VerticalAlignment="Center" Margin="10,0,0,0">
+                        <Button Content="{DynamicResource BtnAdd}" Height="36" Margin="0,0,0,8"
+                                Background="#16A34A" Foreground="White"
+                                BorderThickness="0" FontSize="13" FontWeight="SemiBold"
+                                Click="Add_Click"/>
+                        <Button Content="{DynamicResource BtnCopyPw}" Height="36"
+                                Background="{DynamicResource ButtonAlt}" Foreground="#A0C4FF"
+                                BorderBrush="#3A7BFF" BorderThickness="1" FontSize="13"
+                                Click="Copy_Click"/>
+                    </StackPanel>
+                </Grid>
+                <TextBlock x:Name="StatusText" Grid.Row="2" Foreground="#FF7070" FontSize="13"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

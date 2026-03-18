@@ -1,0 +1,102 @@
+<Window x:Class="BetterPasswordVault.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="BetterPasswordVault" Height="560" Width="460"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="{DynamicResource AppBackground}"
+        FontFamily="Segoe UI">
+
+    <Grid Margin="44,36,44,36">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Logo + Titolo -->
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,30">
+            <TextBlock Text="&#x1F512;" FontSize="48" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <TextBlock Text="BetterPasswordVault" FontSize="20" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimary}" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="SubtitleText" FontSize="13"
+                       Foreground="{DynamicResource TextSecondary}"
+                       HorizontalAlignment="Center" Margin="0,6,0,0"/>
+        </StackPanel>
+
+        <!-- Pannello LOGIN -->
+        <StackPanel x:Name="LoginPanel" Grid.Row="1" Visibility="Collapsed">
+            <TextBlock Text="{DynamicResource LabelUsername}"
+                       Foreground="{DynamicResource TextSecondary}" FontSize="13" Margin="0,0,0,6"/>
+            <TextBox x:Name="LoginUsernameBox" Height="38" FontSize="14"
+                     Background="{DynamicResource InputBackground}"
+                     Foreground="{DynamicResource TextPrimary}"
+                     BorderBrush="{DynamicResource InputBorder}"
+                     Padding="12,8" CaretBrush="{DynamicResource TextPrimary}" Margin="0,0,0,14"/>
+            <TextBlock Text="{DynamicResource LabelMasterPassword}"
+                       Foreground="{DynamicResource TextSecondary}" FontSize="13" Margin="0,0,0,6"/>
+            <PasswordBox x:Name="LoginPasswordBox" Height="38" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" Margin="0,0,0,24"/>
+            <Button Content="{DynamicResource BtnLogin}" Height="42"
+                    Background="#3A7BFF" Foreground="White"
+                    BorderThickness="0" FontSize="15" FontWeight="SemiBold"
+                    Click="Login_Click"/>
+            <TextBlock x:Name="LoginStatusText" Margin="0,14,0,0"
+                       Foreground="#FF7070" FontSize="13" TextWrapping="Wrap"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Pannello REGISTRAZIONE -->
+        <StackPanel x:Name="RegisterPanel" Grid.Row="1" Visibility="Collapsed">
+            <TextBlock Text="{DynamicResource LabelUsername}"
+                       Foreground="{DynamicResource TextSecondary}" FontSize="13" Margin="0,0,0,6"/>
+            <TextBox x:Name="RegUsernameBox" Height="38" FontSize="14"
+                     Background="{DynamicResource InputBackground}"
+                     Foreground="{DynamicResource TextPrimary}"
+                     BorderBrush="{DynamicResource InputBorder}"
+                     Padding="12,8" CaretBrush="{DynamicResource TextPrimary}" Margin="0,0,0,14"/>
+            <TextBlock Text="{DynamicResource LabelMasterPassword}"
+                       Foreground="{DynamicResource TextSecondary}" FontSize="13" Margin="0,0,0,6"/>
+            <PasswordBox x:Name="RegPasswordBox" Height="38" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" Margin="0,0,0,14"/>
+            <TextBlock Text="{DynamicResource LabelConfirmPassword}"
+                       Foreground="{DynamicResource TextSecondary}" FontSize="13" Margin="0,0,0,6"/>
+            <PasswordBox x:Name="RegPasswordConfirmBox" Height="38" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" Margin="0,0,0,6"/>
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border x:Name="StrBar1" Grid.Column="0" Height="4" CornerRadius="2" Background="#333333" Margin="0,0,4,0"/>
+                <Border x:Name="StrBar2" Grid.Column="1" Height="4" CornerRadius="2" Background="#333333" Margin="0,0,4,0"/>
+                <Border x:Name="StrBar3" Grid.Column="2" Height="4" CornerRadius="2" Background="#333333" Margin="0,0,4,0"/>
+                <Border x:Name="StrBar4" Grid.Column="3" Height="4" CornerRadius="2" Background="#333333"/>
+            </Grid>
+            <Button Content="{DynamicResource BtnRegister}" Height="42"
+                    Background="#16A34A" Foreground="White"
+                    BorderThickness="0" FontSize="15" FontWeight="SemiBold"
+                    Click="Create_Click"/>
+            <TextBlock x:Name="RegStatusText" Margin="0,14,0,0"
+                       Foreground="#FF7070" FontSize="13" TextWrapping="Wrap"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Firma -->
+        <TextBlock Grid.Row="2" Text="Samu3k Dev. 2026 release"
+                   FontSize="11" Foreground="{DynamicResource TextSecondary}"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                   Opacity="0.6"/>
+
+    </Grid>
+</Window>

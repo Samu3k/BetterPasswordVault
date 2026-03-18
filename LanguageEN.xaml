@@ -1,0 +1,54 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- MainWindow -->
+    <sys:String x:Key="AppSubtitleLogin">Welcome back! Enter your credentials</sys:String>
+    <sys:String x:Key="AppSubtitleRegister">Create your account to get started</sys:String>
+    <sys:String x:Key="LabelUsername">Username</sys:String>
+    <sys:String x:Key="LabelMasterPassword">Master Password</sys:String>
+    <sys:String x:Key="LabelConfirmPassword">Confirm Password</sys:String>
+    <sys:String x:Key="BtnLogin">Login</sys:String>
+    <sys:String x:Key="BtnRegister">Create account</sys:String>
+
+    <!-- VaultWindow -->
+    <sys:String x:Key="BtnSave">Save</sys:String>
+    <sys:String x:Key="BtnAdd">Add</sys:String>
+    <sys:String x:Key="BtnCopyPw">Copy PW</sys:String>
+    <sys:String x:Key="BtnGenerate">Generate</sys:String>
+    <sys:String x:Key="BtnCopyPassword">Copy password</sys:String>
+    <sys:String x:Key="LabelSite">Site</sys:String>
+    <sys:String x:Key="LabelUsernameField">Username</sys:String>
+    <sys:String x:Key="LabelPasswordField">Password</sys:String>
+    <sys:String x:Key="LabelNoteField">Notes</sys:String>
+    <sys:String x:Key="SearchPlaceholder">Search by site...</sys:String>
+
+    <!-- SettingsWindow -->
+    <sys:String x:Key="SettingsTitle">Settings</sys:String>
+    <sys:String x:Key="SectionAccount">ACCOUNT</sys:String>
+    <sys:String x:Key="SectionBackup">BACKUP</sys:String>
+    <sys:String x:Key="SectionAppearance">APPEARANCE</sys:String>
+    <sys:String x:Key="SectionLanguage">LANGUAGE</sys:String>
+    <sys:String x:Key="LabelChangePassword">Change master password</sys:String>
+    <sys:String x:Key="LabelCurrentPassword">Current password</sys:String>
+    <sys:String x:Key="LabelNewPassword">New password</sys:String>
+    <sys:String x:Key="LabelConfirmNewPassword">Confirm new password</sys:String>
+    <sys:String x:Key="BtnUpdatePassword">Update password</sys:String>
+    <sys:String x:Key="LabelDeleteAccount">Delete account</sys:String>
+    <sys:String x:Key="LabelDeleteAccountDesc">Permanently removes account and vault.</sys:String>
+    <sys:String x:Key="BtnDelete">Delete</sys:String>
+    <sys:String x:Key="LabelExportVault">Export vault</sys:String>
+    <sys:String x:Key="LabelExportVaultDesc">Save an encrypted copy of the vault to disk.</sys:String>
+    <sys:String x:Key="BtnExport">Export</sys:String>
+    <sys:String x:Key="LabelTheme">Theme</sys:String>
+    <sys:String x:Key="LabelThemeDesc">Choose between dark and light theme.</sys:String>
+    <sys:String x:Key="BtnSaveTheme">Save theme</sys:String>
+    <sys:String x:Key="LabelLanguage">Language</sys:String>
+    <sys:String x:Key="LabelLanguageDesc">Requires app restart.</sys:String>
+    <sys:String x:Key="BtnSaveLanguage">Save language</sys:String>
+    <sys:String x:Key="ThemeDark">Dark</sys:String>
+    <sys:String x:Key="ThemeLight">Light</sys:String>
+    <sys:String x:Key="LangIT">Italian</sys:String>
+    <sys:String x:Key="LangEN">English</sys:String>
+
+</ResourceDictionary>

@@ -1,0 +1,118 @@
+<Window x:Class="BetterPasswordVault.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifica credenziale" Height="560" Width="480"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="{DynamicResource AppBackground}"
+        FontFamily="Segoe UI">
+
+    <Grid Margin="32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titolo -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Modifica credenziale" FontSize="20" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimary}"/>
+            <Separator Background="{DynamicResource BorderColor}" Margin="0,12,0,0"/>
+        </StackPanel>
+
+        <!-- Campi -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Sito -->
+                <TextBlock Text="Sito" Foreground="{DynamicResource TextSecondary}"
+                           FontSize="13" Margin="0,0,0,6"/>
+                <TextBox x:Name="SiteBox" Height="38" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" CaretBrush="{DynamicResource TextPrimary}"
+                         Margin="0,0,0,14"/>
+
+                <!-- Username -->
+                <TextBlock Text="Username" Foreground="{DynamicResource TextSecondary}"
+                           FontSize="13" Margin="0,0,0,6"/>
+                <TextBox x:Name="UserBox" Height="38" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" CaretBrush="{DynamicResource TextPrimary}"
+                         Margin="0,0,0,14"/>
+
+                <!-- Password -->
+                <TextBlock Text="Password" Foreground="{DynamicResource TextSecondary}"
+                           FontSize="13" Margin="0,0,0,6"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                    <PasswordBox x:Name="PassBox" Height="38" Width="230" FontSize="14"
+                                 Background="{DynamicResource InputBackground}"
+                                 Foreground="{DynamicResource TextPrimary}"
+                                 BorderBrush="{DynamicResource InputBorder}"
+                                 Padding="12,8"/>
+                    <TextBox x:Name="PassBoxVisible" Height="38" Width="230" FontSize="14"
+                             Background="{DynamicResource InputBackground}"
+                             Foreground="{DynamicResource TextPrimary}"
+                             BorderBrush="{DynamicResource InputBorder}"
+                             Padding="12,8" Visibility="Collapsed"
+                             CaretBrush="{DynamicResource TextPrimary}"/>
+                    <Button x:Name="TogglePassBtn" Width="38" Height="38"
+                            Margin="8,0,0,0"
+                            Background="{DynamicResource ButtonAlt}"
+                            Foreground="{DynamicResource TextPrimary}"
+                            BorderThickness="0" FontSize="15"
+                            Click="TogglePassword_Click">
+                        <TextBlock x:Name="ToggleIcon" Text="&#x1F441;"
+                                   FontFamily="Segoe UI Symbol" FontSize="15"/>
+                    </Button>
+                    <Button Content="Genera" Width="80" Height="38"
+                            Margin="8,0,0,0" Background="#7C3AED" Foreground="White"
+                            BorderThickness="0" FontSize="13"
+                            Click="Generate_Click"/>
+                </StackPanel>
+
+                <!-- Note -->
+                <TextBlock Text="Note" Foreground="{DynamicResource TextSecondary}"
+                           FontSize="13" Margin="0,0,0,6"/>
+                <TextBox x:Name="NoteBox" Height="80" FontSize="14"
+                         Background="{DynamicResource InputBackground}"
+                         Foreground="{DynamicResource TextPrimary}"
+                         BorderBrush="{DynamicResource InputBorder}"
+                         Padding="12,8" TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         CaretBrush="{DynamicResource TextPrimary}"
+                         Margin="0,0,0,14"/>
+
+                <!-- Categoria -->
+                <TextBlock Text="Categoria" Foreground="{DynamicResource TextSecondary}"
+                           FontSize="13" Margin="0,0,0,6"/>
+                <ComboBox x:Name="CategoryBox" Height="36" FontSize="14"
+                          Background="{DynamicResource InputBackground}"
+                          Foreground="{DynamicResource TextPrimary}"
+                          BorderBrush="{DynamicResource InputBorder}"
+                          Margin="0,0,0,8"/>
+
+                <TextBlock x:Name="StatusText"
+                           Foreground="#FF7070" FontSize="13" Margin="0,0,0,8"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Bottoni sempre visibili in fondo -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Right" Margin="0,16,0,0">
+            <Button Content="Annulla" Width="100" Height="38" Margin="0,0,10,0"
+                    Background="{DynamicResource ButtonAlt}"
+                    Foreground="{DynamicResource TextPrimary}"
+                    BorderBrush="{DynamicResource ButtonAltBorder}" BorderThickness="1"
+                    FontSize="13" Click="Cancel_Click"/>
+            <Button Content="Salva modifiche" Width="150" Height="38"
+                    Background="#3A7BFF" Foreground="White"
+                    BorderThickness="0" FontSize="13" FontWeight="SemiBold"
+                    Click="Save_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
