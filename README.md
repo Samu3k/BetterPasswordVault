@@ -7,13 +7,13 @@ A secure, modern and personal password manager for Windows, built with C# and WP
 ## 📸 Screenshots
 
 ### Login
-![Login](screenshots/login.png)
+![Login](screenshots/Login.png)
 
 ### Vault
-![Vault](screenshots/vault.png)
+![Vault](screenshots/Vault.png)
 
 ### Settings
-![Settings](screenshots/settings.png)
+![Settings](screenshots/Settings.png)
 
 ---
 
