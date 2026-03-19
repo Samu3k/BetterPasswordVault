@@ -4,6 +4,19 @@ A secure, modern and personal password manager for Windows, built with C# and WP
 
 ---
 
+## 📸 Screenshots
+
+### Login
+![Login](screenshots/login.png)
+
+### Vault
+![Vault](screenshots/vault.png)
+
+### Settings
+![Settings](screenshots/settings.png)
+
+---
+
 ## ✨ Features
 
 - 🔒 **AES-256 encryption** — your passwords are always encrypted on disk
